@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { PRIORITIES } from "../utils/constants";
 
-function TaskForm({ onAddTask, onUpdateTask, editingTask, onCancelEdit }) {
+function TaskForm({
+    onAddTask,
+    onUpdateTask,
+    editingTask,
+    onCancelEdit
+}) {
     const [title, setTitle] = useState("");
     const [subject, setSubject] = useState("");
     const [dueDate, setDueDate] = useState("");
@@ -58,19 +63,15 @@ function TaskForm({ onAddTask, onUpdateTask, editingTask, onCancelEdit }) {
         <section className="task-form-section">
             <div className="section-heading">
                 <div>
-                    <span className="section-label">TASK MANAGEMENT</span>
-                    <h2>{editingTask ? "Edit Task" : "Add New Task"}</h2>
+                    <span className="section-label">
+                        TASK MANAGEMENT
+                    </span>
+
+                    <h2>
+                        {editingTask ? "Edit Task" : "Add New Task"}
+                    </h2>
                 </div>
 
-                {editingTask && (
-                    <button
-                        type="button"
-                        className="cancel-edit-button"
-                        onClick={handleCancel}
-                    >
-                        Cancel Edit
-                    </button>
-                )}
             </div>
 
             <form id="task-form" onSubmit={handleSubmit}>
@@ -84,7 +85,9 @@ function TaskForm({ onAddTask, onUpdateTask, editingTask, onCancelEdit }) {
                         type="text"
                         placeholder="e.g. Complete Java Assignment"
                         value={title}
-                        onChange={(event) => setTitle(event.target.value)}
+                        onChange={(event) =>
+                            setTitle(event.target.value)
+                        }
                     />
                 </div>
 
@@ -98,7 +101,9 @@ function TaskForm({ onAddTask, onUpdateTask, editingTask, onCancelEdit }) {
                         type="text"
                         placeholder="e.g. Computer Science"
                         value={subject}
-                        onChange={(event) => setSubject(event.target.value)}
+                        onChange={(event) =>
+                            setSubject(event.target.value)
+                        }
                     />
                 </div>
 
@@ -112,7 +117,9 @@ function TaskForm({ onAddTask, onUpdateTask, editingTask, onCancelEdit }) {
                             id="task-due-date"
                             type="date"
                             value={dueDate}
-                            onChange={(event) => setDueDate(event.target.value)}
+                            onChange={(event) =>
+                                setDueDate(event.target.value)
+                            }
                         />
                     </div>
 
@@ -124,10 +131,15 @@ function TaskForm({ onAddTask, onUpdateTask, editingTask, onCancelEdit }) {
                         <select
                             id="task-priority"
                             value={priority}
-                            onChange={(event) => setPriority(event.target.value)}
+                            onChange={(event) =>
+                                setPriority(event.target.value)
+                            }
                         >
                             {PRIORITIES.map((item) => (
-                                <option key={item} value={item}>
+                                <option
+                                    key={item}
+                                    value={item}
+                                >
                                     {item}
                                 </option>
                             ))}
@@ -135,15 +147,21 @@ function TaskForm({ onAddTask, onUpdateTask, editingTask, onCancelEdit }) {
                     </div>
                 </div>
 
-                <div className="form-actions">
-                    <button type="submit" className="primary-button">
-                        {editingTask ? "Update Task" : "Add Task"}
+                {/* FORM ACTIONS */}
+                <div className="tf-task-form-actions">
+                    <button
+                        type="submit"
+                        className="tf-update-task-btn"
+                    >
+                        {editingTask
+                            ? "Update Task"
+                            : "Add Task"}
                     </button>
 
                     {editingTask && (
                         <button
                             type="button"
-                            className="secondary-button"
+                            className="tf-cancel-task-btn"
                             onClick={handleCancel}
                         >
                             Cancel
@@ -153,6 +171,7 @@ function TaskForm({ onAddTask, onUpdateTask, editingTask, onCancelEdit }) {
             </form>
         </section>
     );
+
 }
 
 export default TaskForm;
